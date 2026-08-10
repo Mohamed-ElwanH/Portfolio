@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jane Doe — Skills</title>
+  <meta name="description" content="Technical skills and proficiency." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================== NAVBAR ============================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">JD</span>
+        <span class="brand__name">Jane Doe</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="site-nav__link">About</a>
+        <a href="skills.html" class="site-nav__link is-active">Skills</a>
+        <a href="projects.html" class="site-nav__link">Projects</a>
+        <a href="education.html" class="site-nav__link">Education</a>
+      </nav>
+      <a href="admin.html" class="site-header__admin">Admin</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">Skills</p>
+        <h1>What I work with</h1>
+        <p>A running list of languages, frameworks, and tools I use regularly, along with roughly how deep that experience goes.</p>
+      </div>
+    </section>
+
+    <!--
+      JS/backend hook:
+      Populate #skills-categories from your data source (e.g. /api/skills),
+      grouped by category. Each .skill-item carries data-skill and
+      data-level (0-100) attributes; set the .skill-bar__fill width and
+      .skill-item__level-label text from data-level.
+    -->
+    <section class="skills-categories" id="skills-categories">
+      <div class="skills-category" data-category="Languages">
+        <h2 class="skills-category__title">Languages</h2>
+        <ul class="skill-list">
+          <li class="skill-item" data-skill="JavaScript" data-level="90">
+            <div class="skill-item__head">
+              <span class="skill-item__name">JavaScript</span>
+              <span class="skill-item__level-label">Expert</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 90%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="TypeScript" data-level="80">
+            <div class="skill-item__head">
+              <span class="skill-item__name">TypeScript</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 80%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Python" data-level="70">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Python</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 70%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="SQL" data-level="75">
+            <div class="skill-item__head">
+              <span class="skill-item__name">SQL</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 75%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skills-category" data-category="Frameworks &amp; Libraries">
+        <h2 class="skills-category__title">Frameworks &amp; Libraries</h2>
+        <ul class="skill-list">
+          <li class="skill-item" data-skill="React" data-level="88">
+            <div class="skill-item__head">
+              <span class="skill-item__name">React</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 88%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Node.js" data-level="82">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Node.js</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 82%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Express" data-level="78">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Express</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 78%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Next.js" data-level="65">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Next.js</span>
+              <span class="skill-item__level-label">Intermediate</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 65%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skills-category" data-category="Tools &amp; Platforms">
+        <h2 class="skills-category__title">Tools &amp; Platforms</h2>
+        <ul class="skill-list">
+          <li class="skill-item" data-skill="Git" data-level="92">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Git</span>
+              <span class="skill-item__level-label">Expert</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 92%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Docker" data-level="60">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Docker</span>
+              <span class="skill-item__level-label">Intermediate</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 60%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="PostgreSQL" data-level="72">
+            <div class="skill-item__head">
+              <span class="skill-item__name">PostgreSQL</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 72%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="AWS" data-level="55">
+            <div class="skill-item__head">
+              <span class="skill-item__name">AWS</span>
+              <span class="skill-item__level-label">Intermediate</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 55%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skills-category" data-category="Soft Skills">
+        <h2 class="skills-category__title">Soft Skills</h2>
+        <ul class="skill-list">
+          <li class="skill-item" data-skill="Communication" data-level="88">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Communication</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 88%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Mentoring" data-level="75">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Mentoring</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 75%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Problem Solving" data-level="90">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Problem Solving</span>
+              <span class="skill-item__level-label">Expert</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 90%"></div></div>
+          </li>
+          <li class="skill-item" data-skill="Project Planning" data-level="70">
+            <div class="skill-item__head">
+              <span class="skill-item__name">Project Planning</span>
+              <span class="skill-item__level-label">Advanced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="width: 70%"></div></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__copy">© 2026 Jane Doe. Built from scratch.</p>
+      <ul class="site-footer__social">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="mailto:hello@janedoe.dev">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jane Doe — Admin Dashboard</title>
+    <meta name="description" content="Manage portfolio content and messages." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ============================== NAVBAR (shared) ============================== -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="index.html" class="brand">
+          <span class="brand__mark">JD</span>
+          <span class="brand__name">Jane Doe</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="index.html" class="site-nav__link">About</a>
+          <a href="skills.html" class="site-nav__link">Skills</a>
+          <a href="projects.html" class="site-nav__link">Projects</a>
+          <a href="education.html" class="site-nav__link">Education</a>
+        </nav>
+        <a href="admin.html" class="site-header__admin" aria-current="page"
+          >Admin</a
+        >
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!--
+    JS hook (overall):
+    Each button in .admin-nav has data-view="X" matching an
+    .admin-view[data-view-panel="X"]. On click: remove is-active from all
+    .admin-nav__item / .admin-view, then add is-active to the matching pair.
+  -->
+    <div class="admin-layout">
+      <!-- ============================== SIDEBAR ============================== -->
+      <aside class="admin-sidebar">
+        <p class="admin-sidebar__label">Dashboard</p>
+        <nav class="admin-nav" id="admin-nav" aria-label="Admin sections">
+          <button
+            class="admin-nav__item is-active"
+            data-view="overview"
+            type="button"
+          >
+            Overview
+          </button>
+          <button class="admin-nav__item" data-view="about" type="button">
+            About Page
+          </button>
+          <button class="admin-nav__item" data-view="skills" type="button">
+            Skills
+          </button>
+          <button class="admin-nav__item" data-view="projects" type="button">
+            Projects
+          </button>
+          <button class="admin-nav__item" data-view="education" type="button">
+            Education
+          </button>
+          <button class="admin-nav__item" data-view="messages" type="button">
+            Messages
+            <span
+              class="admin-nav__count"
+              id="unread-count"
+              data-field="unread-count"
+              >3</span
+            >
+          </button>
+        </nav>
+      </aside>
+
+      <!-- ============================== MAIN ============================== -->
+      <main class="admin-main">
+        <!-- ---------- OVERVIEW ---------- -->
+        <section
+          class="admin-view is-active"
+          data-view-panel="overview"
+          id="view-overview"
+        >
+          <div class="admin-view__header">
+            <div>
+              <h1>Overview</h1>
+              <p>A snapshot of your portfolio content and recent activity.</p>
+            </div>
+          </div>
+
+          <!-- JS/backend: populate values from /api/stats -->
+          <div class="stat-grid">
+            <div class="stat-card">
+              <p class="stat-card__label">Unread messages</p>
+              <p class="stat-card__value accent" data-field="stat-unread">3</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-card__label">Total messages</p>
+              <p class="stat-card__value" data-field="stat-messages">12</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-card__label">Projects</p>
+              <p class="stat-card__value accent-2" data-field="stat-projects">
+                3
+              </p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-card__label">Skills listed</p>
+              <p class="stat-card__value" data-field="stat-skills">16</p>
+            </div>
+          </div>
+
+          <div class="admin-panel">
+            <p class="admin-panel__title">Quick links</p>
+            <div class="hero__actions">
+              <button
+                class="btn btn--ghost"
+                type="button"
+                data-goto-view="about"
+              >
+                Edit About page
+              </button>
+              <button
+                class="btn btn--ghost"
+                type="button"
+                data-goto-view="projects"
+              >
+                Edit Projects
+              </button>
+              <button
+                class="btn btn--ghost"
+                type="button"
+                data-goto-view="messages"
+              >
+                View messages
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---------- ABOUT PAGE ---------- -->
+        <section class="admin-view" data-view-panel="about" id="view-about">
+          <div class="admin-view__header">
+            <div>
+              <h1>About page</h1>
+              <p>
+                Edits here update the hero, bio, and contact details shown on
+                the About page.
+              </p>
+            </div>
+          </div>
+
+          <!-- JS/backend: on submit, PUT/PATCH to /api/about with these fields -->
+          <form class="admin-panel admin-form" id="about-form">
+            <div class="form-row">
+              <label for="ab-name">Full name</label>
+              <input type="text" id="ab-name" name="name" value="Jane Doe" />
+            </div>
+            <div class="form-row">
+              <label for="ab-title">Title / role</label>
+              <input
+                type="text"
+                id="ab-title"
+                name="title"
+                value="Software Engineer"
+              />
+            </div>
+            <div class="form-row">
+              <label for="ab-location">Location</label>
+              <input
+                type="text"
+                id="ab-location"
+                name="location"
+                value="Cairo, Egypt"
+              />
+            </div>
+            <div class="form-row">
+              <label for="ab-availability">Availability</label>
+              <input
+                type="text"
+                id="ab-availability"
+                name="availability"
+                value="Open to opportunities"
+              />
+            </div>
+            <div class="form-row">
+              <label for="ab-email">Public email</label>
+              <input
+                type="email"
+                id="ab-email"
+                name="email"
+                value="hello@janedoe.dev"
+              />
+            </div>
+            <div class="form-row">
+              <label for="ab-portrait">Portrait image</label>
+              <input
+                type="file"
+                id="ab-portrait"
+                name="portrait"
+                accept="image/*"
+              />
+            </div>
+            <div class="form-row form-row--full">
+              <label for="ab-bio-short">Short bio (hero)</label>
+              <textarea id="ab-bio-short" name="bioShort" rows="3">
+I build fast, accessible web applications from the database to the pixel. Currently focused on full-stack products, developer tooling, and clean interface design.</textarea
+              >
+            </div>
+            <div class="form-row form-row--full">
+              <label for="ab-bio-long">Long bio (about section)</label>
+              <textarea id="ab-bio-long" name="bioLong" rows="6">
+I'm a software engineer with a background in building products end to end — from data modelling and APIs through to the interfaces people actually use.</textarea
+              >
+            </div>
+            <div class="form-row">
+              <label for="ab-github">GitHub URL</label>
+              <input
+                type="url"
+                id="ab-github"
+                name="socialGithub"
+                placeholder="https://github.com/..."
+              />
+            </div>
+            <div class="form-row">
+              <label for="ab-linkedin">LinkedIn URL</label>
+              <input
+                type="url"
+                id="ab-linkedin"
+                name="socialLinkedin"
+                placeholder="https://linkedin.com/in/..."
+              />
+            </div>
+            <div class="admin-form-actions">
+              <button type="reset" class="btn btn--ghost">
+                Discard changes
+              </button>
+              <button type="submit" class="btn btn--primary">
+                Save changes
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ---------- SKILLS ---------- -->
+        <section class="admin-view" data-view-panel="skills" id="view-skills">
+          <div class="admin-view__header">
+            <div>
+              <h1>Skills</h1>
+              <p>
+                Add, edit, or remove skills shown on the Skills page, grouped by
+                category.
+              </p>
+            </div>
+            <button
+              class="btn btn--primary btn--small"
+              type="button"
+              id="add-skill-btn"
+            >
+              + Add skill
+            </button>
+          </div>
+
+          <!--
+          JS/backend hook:
+          Each .admin-entry represents one skill row bound to a record id
+          (data-skill-id). "add-skill-btn" should append a new blank
+          .admin-entry using the same field structure. Delete buttons
+          should remove the entry and call DELETE /api/skills/:id.
+        -->
+          <template id="skill-entry-template">
+  <div class="admin-entry" data-skill-id="">
+    <div class="admin-entry__top">
+      <span class="admin-entry__tag">Skill #</span>
+      <button class="btn btn--danger btn--small" type="button" data-action="delete-skill">Remove</button>
+    </div>
+    <div class="admin-entry__form">
+      <div class="form-row">
+        <label for="sk-name-">Name</label>
+        <input type="text" id="sk-name-" name="name" value="" />
+      </div>
+      <div class="form-row">
+        <label for="sk-category-">Category</label>
+        <select id="sk-category-" name="category">
+          <option>Languages</option>
+          <option>Frameworks &amp; Libraries</option>
+          <option>Tools &amp; Platforms</option>
+          <option>Soft Skills</option>
+        </select>
+      </div>
+      <div class="form-row form-row--full">
+        <label for="sk-level-">Proficiency (0–100)</label>
+        <input type="number" id="sk-level-" name="level" min="0" max="100" value="50" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<div id="skills-editor"></div>
+
+            <div class="admin-entry" data-skill-id="2">
+              <div class="admin-entry__top">
+                <span class="admin-entry__tag">Skill #2</span>
+                <button
+                  class="btn btn--danger btn--small"
+                  type="button"
+                  data-action="delete-skill"
+                >
+                  Remove
+                </button>
+              </div>
+              <div class="admin-entry__form">
+                <div class="form-row">
+                  <label for="sk-name-2">Name</label>
+                  <input type="text" id="sk-name-2" name="name" value="React" />
+                </div>
+                <div class="form-row">
+                  <label for="sk-category-2">Category</label>
+                  <select id="sk-category-2" name="category">
+                    <option>Languages</option>
+                    <option selected>Frameworks &amp; Libraries</option>
+                    <option>Tools &amp; Platforms</option>
+                    <option>Soft Skills</option>
+                  </select>
+                </div>
+                <div class="form-row form-row--full">
+                  <label for="sk-level-2">Proficiency (0–100)</label>
+                  <input
+                    type="number"
+                    id="sk-level-2"
+                    name="level"
+                    min="0"
+                    max="100"
+                    value="88"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-form-actions" style="justify-content: flex-start">
+            <button class="btn btn--primary" type="button" id="save-skills-btn">
+              Save all skills
+            </button>
+          </div>
+        </section>
+
+        <!-- ---------- PROJECTS ---------- -->
+        <section
+          class="admin-view"
+          data-view-panel="projects"
+          id="view-projects"
+        >
+          <div class="admin-view__header">
+            <div>
+              <h1>Projects</h1>
+              <p>Manage the project cards shown on the Projects page.</p>
+            </div>
+            <button
+              class="btn btn--primary btn--small"
+              type="button"
+              id="add-project-btn"
+            >
+              + Add project
+            </button>
+          </div>
+
+          <!--
+          JS/backend hook:
+          Each .admin-entry represents one project bound to data-project-id.
+          "add-project-btn" appends a new blank entry using this structure.
+        -->
+          <template id="project-entry-template">
+  <div class="admin-entry" data-project-id="">
+    <div class="admin-entry__top">
+      <span class="admin-entry__tag">Project #</span>
+      <button class="btn btn--danger btn--small" type="button" data-action="delete-project">Remove</button>
+    </div>
+    <div class="admin-entry__form">
+      <div class="form-row">
+        <label for="pr-title-">Title</label>
+        <input type="text" id="pr-title-" name="title" value="" />
+      </div>
+      <div class="form-row">
+        <label for="pr-meta-">Meta (year / type)</label>
+        <input type="text" id="pr-meta-" name="meta" value="" />
+      </div>
+      <div class="form-row form-row--full">
+        <label for="pr-desc-">Description</label>
+        <textarea id="pr-desc-" name="description" rows="3"></textarea>
+      </div>
+      <div class="form-row">
+        <label for="pr-tags-">Tags (comma separated)</label>
+        <input type="text" id="pr-tags-" name="tags" value="" />
+      </div>
+      <div class="form-row">
+        <label for="pr-image-">Image</label>
+        <input type="file" id="pr-image-" name="image" accept="image/*" />
+      </div>
+      <div class="form-row">
+        <label for="pr-live-">Live link</label>
+        <input type="url" id="pr-live-" name="liveLink" placeholder="https://..." />
+      </div>
+      <div class="form-row">
+        <label for="pr-repo-">Repo link</label>
+        <input type="url" id="pr-repo-" name="repoLink" placeholder="https://github.com/..." />
+      </div>
+    </div>
+  </div>
+</template>
+
+<div id="projects-editor"></div>
+
+          <div class="admin-form-actions" style="justify-content: flex-start">
+            <button
+              class="btn btn--primary"
+              type="button"
+              id="save-projects-btn"
+            >
+              Save all projects
+            </button>
+          </div>
+        </section>
+
+        <!-- ---------- EDUCATION ---------- -->
+        <section
+          class="admin-view"
+          data-view-panel="education"
+          id="view-education"
+        >
+          <div class="admin-view__header">
+            <div>
+              <h1>Education</h1>
+              <p>
+                Manage timeline entries and certifications shown on the
+                Education page.
+              </p>
+            </div>
+            <button
+              class="btn btn--primary btn--small"
+              type="button"
+              id="add-education-btn"
+            >
+              + Add entry
+            </button>
+          </div>
+
+          <!--
+          JS/backend hook:
+          Each .admin-entry represents one education record bound to
+          data-edu-id. "add-education-btn" appends a new blank entry.
+        -->
+          <template id="education-entry-template">
+            <div class="admin-entry" data-edu-id="">
+              <div class="admin-entry__top">
+                <span class="admin-entry__tag">Entry #</span>
+                <button
+                  class="btn btn--danger btn--small"
+                  type="button"
+                  data-action="delete-education"
+                >
+                  Remove
+                </button>
+              </div>
+              <div class="admin-entry__form">
+                <div class="form-row">
+                  <label for="ed-degree-">Degree</label>
+                  <input type="text" id="ed-degree-" name="degree" value="" />
+                </div>
+                <div class="form-row">
+                  <label for="ed-school-">School</label>
+                  <input type="text" id="ed-school-" name="school" value="" />
+                </div>
+                <div class="form-row">
+                  <label for="ed-dates-">Dates</label>
+                  <input type="text" id="ed-dates-" name="dates" value="" />
+                </div>
+                <div class="form-row form-row--full">
+                  <label for="ed-desc-">Description</label>
+                  <textarea
+                    id="ed-desc-"
+                    name="description"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <div id="education-editor"></div>
+
+          <p class="admin-panel__title" style="margin-top: var(--sp-6)">
+            Certifications
+          </p>
+          <template id="cert-entry-template">
+  <div class="admin-entry" data-cert-id="">
+    <div class="admin-entry__top">
+      <span class="admin-entry__tag">Certification #</span>
+      <button class="btn btn--danger btn--small" type="button" data-action="delete-cert">Remove</button>
+    </div>
+    <div class="admin-entry__form">
+      <div class="form-row">
+        <label for="ce-name-">Name</label>
+        <input type="text" id="ce-name-" name="name" value="" />
+      </div>
+      <div class="form-row">
+        <label for="ce-issuer-">Issuer &amp; year</label>
+        <input type="text" id="ce-issuer-" name="issuer" value="" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<div id="certifications-editor"></div>
+          <button
+            class="btn btn--ghost btn--small admin-add-btn"
+            type="button"
+            id="add-cert-btn"
+          >
+            + Add certification
+          </button>
+
+          <div
+            class="admin-form-actions"
+            style="justify-content: flex-start; margin-top: var(--sp-6)"
+          >
+            <button
+              class="btn btn--primary"
+              type="button"
+              id="save-education-btn"
+            >
+              Save education
+            </button>
+          </div>
+        </section>
+
+        <!-- ---------- MESSAGES ---------- -->
+        <section
+          class="admin-view"
+          data-view-panel="messages"
+          id="view-messages"
+        >
+          <div class="admin-view__header">
+            <div>
+              <h1>Messages</h1>
+              <p>
+                Messages submitted through the contact form on the About page.
+              </p>
+            </div>
+          </div>
+
+          <!--
+          JS/backend hook:
+          Populate <tbody id="messages-body"> from /api/messages.
+          Add class "is-unread" to <tr> for unread rows. "View" should open
+          the full message (e.g. a modal your JS controls); "Delete" should
+          call DELETE /api/messages/:id and remove the row.
+        -->
+          <div class="table-wrap">
+            <table class="messages-table" id="messages-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Message</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="messages-body">
+                <tr data-message-id="1" class="is-unread">
+                  <td data-field="name">Alex Morgan</td>
+                  <td data-field="email">alex.morgan@example.com</td>
+                  <td class="msg-preview" data-field="message">
+                    Hi Jane, I saw your Orbit project and would love to talk
+                    about a freelance role on our team...
+                  </td>
+                  <td data-field="date">Aug 7, 2026</td>
+                  <td>
+                    <span class="status-pill unread" data-field="status"
+                      >Unread</span
+                    >
+                  </td>
+                  <td class="msg-actions">
+                    <button
+                      class="btn btn--ghost btn--small"
+                      type="button"
+                      data-action="view-message"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="btn btn--danger btn--small"
+                      type="button"
+                      data-action="delete-message"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr data-message-id="2" class="is-unread">
+                  <td data-field="name">Priya Nair</td>
+                  <td data-field="email">priya.nair@example.com</td>
+                  <td class="msg-preview" data-field="message">
+                    Loved the Focusframe extension. Do you take on short
+                    consulting engagements?
+                  </td>
+                  <td data-field="date">Aug 5, 2026</td>
+                  <td>
+                    <span class="status-pill unread" data-field="status"
+                      >Unread</span
+                    >
+                  </td>
+                  <td class="msg-actions">
+                    <button
+                      class="btn btn--ghost btn--small"
+                      type="button"
+                      data-action="view-message"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="btn btn--danger btn--small"
+                      type="button"
+                      data-action="delete-message"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr data-message-id="3" class="is-unread">
+                  <td data-field="name">Sam Osei</td>
+                  <td data-field="email">sam.osei@example.com</td>
+                  <td class="msg-preview" data-field="message">
+                    Are you open to full-time roles right now? We're hiring for
+                    a senior engineer position.
+                  </td>
+                  <td data-field="date">Aug 2, 2026</td>
+                  <td>
+                    <span class="status-pill unread" data-field="status"
+                      >Unread</span
+                    >
+                  </td>
+                  <td class="msg-actions">
+                    <button
+                      class="btn btn--ghost btn--small"
+                      type="button"
+                      data-action="view-message"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="btn btn--danger btn--small"
+                      type="button"
+                      data-action="delete-message"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr data-message-id="4">
+                  <td data-field="name">Diego Ramirez</td>
+                  <td data-field="email">diego.ramirez@example.com</td>
+                  <td class="msg-preview" data-field="message">
+                    Thanks for the quick reply last week, everything's working
+                    great now.
+                  </td>
+                  <td data-field="date">Jul 29, 2026</td>
+                  <td>
+                    <span class="status-pill read" data-field="status"
+                      >Read</span
+                    >
+                  </td>
+                  <td class="msg-actions">
+                    <button
+                      class="btn btn--ghost btn--small"
+                      type="button"
+                      data-action="view-message"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="btn btn--danger btn--small"
+                      type="button"
+                      data-action="delete-message"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- JS/backend: show this instead of the table when there are no messages -->
+          <!--
+        <p class="empty-state">No messages yet.</p>
+        --></section>
+      </main>
+    </div>
+    <script src="./dashboard.js"></script>
+  </body>
+</html>

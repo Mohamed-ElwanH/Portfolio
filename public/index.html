@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jane Doe — About</title>
+  <meta name="description" content="Software engineer portfolio — about, skills, projects and education." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================== NAVBAR ============================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">JD</span>
+        <span class="brand__name">Jane Doe</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="site-nav__link is-active">About</a>
+        <a href="skills.html" class="site-nav__link">Skills</a>
+        <a href="projects.html" class="site-nav__link">Projects</a>
+        <a href="education.html" class="site-nav__link">Education</a>
+      </nav>
+      <a href="admin.html" class="site-header__admin">Admin</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================== HERO ============================== -->
+    <section class="hero" id="about">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow">Software Engineer</p>
+          <h1 class="hero__name">Jane <em>Doe</em></h1>
+          <!-- JS/backend: replace with fetched bio text -->
+          <p class="hero__bio" data-field="bio">
+            I build fast, accessible web applications from the database to the pixel.
+            Currently focused on full-stack products, developer tooling, and clean
+            interface design.
+          </p>
+          <div class="hero__actions">
+            <a href="projects.html" class="btn btn--primary">View projects</a>
+            <a href="#contact" class="btn btn--ghost">Get in touch</a>
+          </div>
+          <ul class="hero__meta">
+            <li>
+              <span class="meta-label">Location</span>
+              <span data-field="location">Cairo, Egypt</span>
+            </li>
+            <li>
+              <span class="meta-label">Email</span>
+              <span data-field="email"><a href="mailto:hello@janedoe.dev">hello@janedoe.dev</a></span>
+            </li>
+            <li>
+              <span class="meta-label">Availability</span>
+              <span data-field="availability">Open to opportunities</span>
+            </li>
+          </ul>
+        </div>
+        <div class="hero__portrait">
+          <!-- JS/backend: replace src with uploaded portrait -->
+          <img src="https://placehold.co/480x560/f1eee7/9a9484?text=Portrait" alt="Portrait of Jane Doe" data-field="portrait" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== STORY ============================== -->
+    <section class="section" id="story">
+      <div class="container">
+        <p class="eyebrow">About me</p>
+        <h2>A bit more about how I work</h2>
+        <!-- JS/backend: replace with fetched long-form bio (rendered paragraphs) -->
+        <div class="prose" data-field="about-long">
+          <p>
+            I'm a software engineer with a background in building products end to end —
+            from data modelling and APIs through to the interfaces people actually use.
+            I care about performance, accessibility, and code that's easy for the next
+            person to pick up.
+          </p>
+          <p>
+            Outside of client and product work, I spend time contributing to open-source
+            tooling, mentoring newer developers, and writing about what I learn along the
+            way. I'm always happy to talk through an idea, a bug, or a career question.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <section class="section section--muted" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's work together</h2>
+          <p>
+            Have a project, a role, or just a question? Send a message below and
+            I'll get back to you, or reach out directly using the email address here.
+          </p>
+          <div class="contact__direct">
+            <span class="meta-label">Email me directly</span>
+            <a href="mailto:hello@janedoe.dev" data-field="contact-email">hello@janedoe.dev</a>
+          </div>
+          <ul class="contact__social">
+            <li><a href="#" data-field="social-github">GitHub</a></li>
+            <li><a href="#" data-field="social-linkedin">LinkedIn</a></li>
+            <li><a href="#" data-field="social-twitter">Twitter</a></li>
+          </ul>
+        </div>
+
+        <!--
+          JS/backend hook:
+          On submit, collect name/email/message and POST to your API
+          (e.g. /api/messages). Store the record so it can be listed on
+          admin.html's "Messages" view. Use #contact-form-status to show
+          a success or error message (is-success / is-error classes provided).
+        -->
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required />
+          </div>
+          <div class="form-row">
+            <label for="cf-email">Your email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required />
+          </div>
+          <div class="form-row">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Send message</button>
+          <p class="form-status" id="contact-form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__copy">© 2026 Jane Doe. Built from scratch.</p>
+      <ul class="site-footer__social">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="mailto:hello@janedoe.dev">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

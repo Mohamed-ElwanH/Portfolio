@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jane Doe — Education</title>
+  <meta name="description" content="Education history and certifications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================== NAVBAR ============================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__mark">JD</span>
+        <span class="brand__name">Jane Doe</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html" class="site-nav__link">About</a>
+        <a href="skills.html" class="site-nav__link">Skills</a>
+        <a href="projects.html" class="site-nav__link">Projects</a>
+        <a href="education.html" class="site-nav__link is-active">Education</a>
+      </nav>
+      <a href="admin.html" class="site-header__admin">Admin</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <p class="eyebrow">Education</p>
+        <h1>Education &amp; certifications</h1>
+        <p>Formal education and the certifications I've picked up along the way.</p>
+      </div>
+    </section>
+
+    <!--
+      JS/backend hook:
+      Populate #education-timeline from your data source (e.g. /api/education).
+      Each .timeline__item carries data-edu-id; repeat this markup per entry,
+      ordered most recent first.
+    -->
+    <section class="container">
+      <ol class="timeline" id="education-timeline">
+        <li class="timeline__item" data-edu-id="1">
+          <div class="timeline__marker"></div>
+          <div class="timeline__content">
+            <p class="timeline__date" data-field="dates">2022 — 2026</p>
+            <h3 class="timeline__degree" data-field="degree">B.Sc. in Computer Science</h3>
+            <p class="timeline__school" data-field="school">University of Technology</p>
+            <p class="timeline__desc" data-field="description">
+              Focused on distributed systems and human-computer interaction.
+              Graduated with honors; served as a teaching assistant for
+              introductory web development.
+            </p>
+          </div>
+        </li>
+        <li class="timeline__item" data-edu-id="2">
+          <div class="timeline__marker"></div>
+          <div class="timeline__content">
+            <p class="timeline__date" data-field="dates">2020 — 2022</p>
+            <h3 class="timeline__degree" data-field="degree">Associate Degree, Information Technology</h3>
+            <p class="timeline__school" data-field="school">City Community College</p>
+            <p class="timeline__desc" data-field="description">
+              Coursework in networking, databases, and introductory
+              programming across several languages.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Certifications</p>
+        <h2>Licenses &amp; certifications</h2>
+      </div>
+      <!--
+        JS/backend hook:
+        Populate #certifications from your data source. Each .cert-card
+        carries data-cert-id; repeat per certification record.
+      -->
+      <div class="container certifications" id="certifications">
+        <div class="cert-card" data-cert-id="1">
+          <h3 data-field="name">AWS Certified Developer — Associate</h3>
+          <p class="cert-card__issuer" data-field="issuer">Amazon Web Services · 2025</p>
+        </div>
+        <div class="cert-card" data-cert-id="2">
+          <h3 data-field="name">Professional Scrum Master I</h3>
+          <p class="cert-card__issuer" data-field="issuer">Scrum.org · 2024</p>
+        </div>
+        <div class="cert-card" data-cert-id="3">
+          <h3 data-field="name">Meta Front-End Developer</h3>
+          <p class="cert-card__issuer" data-field="issuer">Meta · 2023</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__copy">© 2026 Jane Doe. Built from scratch.</p>
+      <ul class="site-footer__social">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="mailto:hello@janedoe.dev">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
