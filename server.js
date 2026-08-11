@@ -8,6 +8,8 @@ app.use(express.json());
 
 const aboutRoute = require('./routes/about.js');
 const eduRoute = require('./routes/education.js');
+const certRoute = require('./routes/certification.js');
 app.use('/api/about', aboutRoute);
 app.use('/api/education', eduRoute);
+app.use('/api/certification', certRoute)
 app.listen(PORT,_=>console.log(`Server started at port: ${PORT}`));
