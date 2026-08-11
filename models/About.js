@@ -5,7 +5,7 @@ const aboutSchema = new mongoose.Schema({
     type: String,
     required: true,
     uppercase: true,
-    trim: true,
+    //trim: true,
   },
   title: {
     type: String,
