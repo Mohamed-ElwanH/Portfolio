@@ -31,7 +31,7 @@ router.put("/:id", async (req, res) => {
   res.status(200).json(newEdu);
 });
 router.delete("/:id", async(req, res)=>{
-    const newEdu = await Education.findByIdAndDelete(req.params.id);
-    res.status(200).json(newEdu);
+    const edu = await Education.findByIdAndDelete(req.params.id);
+    res.status(200).json(edu);
 });
 module.exports = router;
