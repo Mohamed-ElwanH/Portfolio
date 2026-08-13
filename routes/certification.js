@@ -7,7 +7,7 @@ const Certification = certSchema;
 router.post("/", async (req, res) => {
   try {
     const { certName, year, desc } = req.body;
-    const cert = await Education.create({ certName, year, desc });
+    const cert = await Certification.create({ certName, year, desc });
     res.status(201).json(cert);
   } catch (e) {
     res.status(500).json({ err: e.message });
