@@ -23,9 +23,9 @@ export class About implements OnInit{
       availability:new FormControl('', [Validators.required]),
       publicEmail:new FormControl('', [Validators.required, Validators.email]),
       shortBio:new FormControl('', [Validators.required]),
-      longBio:new FormControl(''),
-      githubURL:new FormControl('', [UrlValidator.ValidUrl()]),
-      linkedinURL:new FormControl('', [UrlValidator.ValidUrl()])
+      longBio:new FormControl('', [Validators.required]),
+      githubURL:new FormControl('', [Validators.required,UrlValidator.ValidUrl()]),
+      linkedInURL:new FormControl('', [Validators.required,UrlValidator.ValidUrl()])
 
     });
     this._aboutService.getInfo().subscribe((data)=>{
@@ -45,7 +45,7 @@ export class About implements OnInit{
     formData.append('shortBio', this.form.get('shortBio')?.value as string);
     formData.append('longBio', this.form.get('longBio')?.value as string);
     formData.append('githubURL', this.form.get('githubURL')?.value as string);
-    formData.append('linkedInURL', this.form.get('linkedinURL')?.value as string);
+    formData.append('linkedInURL', this.form.get('linkedInURL')?.value as string);
 
     this._aboutService.addInfo(formData).subscribe({
       next: (data)=>{
