@@ -161,3 +161,13 @@ h3 { font-size: 1.2rem; line-height: 1.35; }
 }
 .link-arrow::after { content: ' →'; }
 .link-arrow:hover { color: var(--accent); border-color: var(--accent); }
+input.ng-invalid.ng-touched {
+  border: solid 4px red;
+}
+.msg {
+  margin-top: 4px;
+}
+.msg p {
+  font-size: 0.8rem;
+  color: var(--danger);
+}
