@@ -1,1 +1,77 @@
-<p>about works!</p>
+<form class="about-form"(ngSubmit) = "onSubmit()" [formGroup] = "form">
+  <div class="form-group">
+    <label for="ab-name">Full name</label>
+    <input type="text" id="ab-name" formControlName="fullName" placeholder="Jane Doe" />
+    <div class="msg" *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid">
+        <p *ngIf="form.get('fullName')?.errors?.['required']">Full name is required</p>
+        <p *ngIf="form.get('fullName')?.errors?.['minlength']">Full name must be longer than 6 characters</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ab-title">Title / role</label>
+    <input type="text" id="ab-title" formControlName="title" placeholder="Software Engineer" />
+    <div class="msg" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
+        <p *ngIf="form.get('title')?.errors?.['required']">Title is required</p>
+    </div>
+  </div>
+
+  <div class="form-row-split">
+    <div class="form-group">
+      <label for="ab-location">Location</label>
+      <input type="text" id="ab-location" formControlName="location" placeholder="Cairo, Egypt" />
+         <div class="msg" *ngIf="form.get('location')?.touched && form.get('location')?.invalid">
+        <p *ngIf="form.get('location')?.errors?.['required']">Location is required</p>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ab-availability">Availability</label>
+      <input type="text" id="ab-availability" formControlName="availability" placeholder="Open to opportunities" />
+         <div class="msg" *ngIf="form.get('availability')?.touched && form.get('availability')?.invalid">
+        <p *ngIf="form.get('availability')?.errors?.['required']">Availability is required</p>
+    </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ab-email">Public email</label>
+    <input type="email" id="ab-email" formControlName="publicEmail" placeholder="hello@janedoe.dev" />
+       <div class="msg" *ngIf="form.get('publicEmail')?.touched && form.get('publicEmail')?.invalid">
+        <p *ngIf="form.get('publicEmail')?.errors?.['required']">Public email is required</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ab-bio-short">Short bio (hero)</label>
+    <textarea id="ab-bio-short" formControlName="shortBio" rows="3" placeholder="A one or two sentence intro shown at the top of your About page."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="ab-bio-long">Long bio (about section)</label>
+    <textarea id="ab-bio-long" formControlName="longBio" rows="6" placeholder="A longer paragraph about your background, experience, and what you're looking for."></textarea>
+  </div>
+
+  <div class="form-row-split">
+    <div class="form-group">
+      <label for="ab-github">GitHub URL</label>
+      <input type="url" id="ab-github" formControlName="githubURL" placeholder="https://github.com/janedoe" />
+         <div class="msg" *ngIf="form.get('githubURL')?.touched && form.get('githubURL')?.invalid">
+        <p *ngIf="form.get('githubURL')?.errors?.['invalidUrl']">Invalid URL format</p>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ab-linkedin">LinkedIn URL</label>
+      <input type="url" id="ab-linkedin" formControlName="linkedInURL" placeholder="https://linkedin.com/in/janedoe" />
+      <div class="msg" *ngIf="form.get('linkedinURL')?.touched && form.get('linkedinURL')?.invalid">
+        <p *ngIf="form.get('linkedinURL')?.errors?.['invalidUrl']">Invalid URL format</p>
+    </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="reset" class="btn btn--ghost">Discard changes</button>
+    <button type="submit" class="btn btn--primary">Save changes</button>
+  </div>
+</form>
