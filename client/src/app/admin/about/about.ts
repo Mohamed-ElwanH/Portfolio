@@ -45,7 +45,7 @@ export class About implements OnInit{
     formData.append('shortBio', this.form.get('shortBio')?.value as string);
     formData.append('longBio', this.form.get('longBio')?.value as string);
     formData.append('githubURL', this.form.get('githubURL')?.value as string);
-    formData.append('linkedInURL', this.form.get('longBio')?.value as string);
+    formData.append('linkedInURL', this.form.get('linkedinURL')?.value as string);
 
     this._aboutService.addInfo(formData).subscribe({
       next: (data)=>{
