@@ -1,0 +1,45 @@
+<!-- ============================== CONTACT ============================== -->
+    <section class="section section--muted" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's work together</h2>
+          <p>
+            Have a project, a role, or just a question? Send a message below and
+            I'll get back to you, or reach out directly using the email address here.
+          </p>
+          <div class="contact__direct">
+            <span class="meta-label">Email me directly</span>
+            <a [href]="aboutData?.email" data-field="contact-email">{{aboutData?.email}}</a>
+          </div>
+          <ul class="contact__social">
+            <li><a [href]="aboutData?.githubURL" data-field="social-github">GitHub</a></li>
+            <li><a [href]="aboutData?.linkedinURL" data-field="social-linkedin">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <!--
+          JS/backend hook:
+          On submit, collect name/email/message and POST to your API
+          (e.g. /api/messages). Store the record so it can be listed on
+          admin.html's "Messages" view. Use #contact-form-status to show
+          a success or error message (is-success / is-error classes provided).
+        -->
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required />
+          </div>
+          <div class="form-row">
+            <label for="cf-email">Your email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required />
+          </div>
+          <div class="form-row">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Send message</button>
+          <p class="form-status" id="contact-form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>

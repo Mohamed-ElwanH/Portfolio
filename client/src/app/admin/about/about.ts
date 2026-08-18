@@ -23,9 +23,9 @@ export class About implements OnInit{
       availability:new FormControl('', [Validators.required]),
       publicEmail:new FormControl('', [Validators.required, Validators.email]),
       shortBio:new FormControl('', [Validators.required]),
-      longBio:new FormControl(''),
-      githubURL:new FormControl('', [UrlValidator.ValidUrl()]),
-      linkedinURL:new FormControl('', [UrlValidator.ValidUrl()])
+      longBio:new FormControl('', [Validators.required]),
+      githubURL:new FormControl('', [Validators.required,UrlValidator.ValidUrl()]),
+      linkedInURL:new FormControl('', [Validators.required,UrlValidator.ValidUrl()])
 
     });
     this._aboutService.getInfo().subscribe((data)=>{
@@ -35,19 +35,20 @@ export class About implements OnInit{
     })
   }
   onSubmit(){
-    let formData = new FormData();
-    //<photo>
-    formData.append('fullName', this.form.get('fullName')?.value as string);
-    formData.append('title', this.form.get('title')?.value as string);
-    formData.append('location', this.form.get('location')?.value as string);
-    formData.append('availability', this.form.get('availability')?.value as string);
-    formData.append('email', this.form.get('publicEmail')?.value as string);
-    formData.append('shortBio', this.form.get('shortBio')?.value as string);
-    formData.append('longBio', this.form.get('longBio')?.value as string);
-    formData.append('githubURL', this.form.get('githubURL')?.value as string);
-    formData.append('linkedInURL', this.form.get('longBio')?.value as string);
 
-    this._aboutService.addInfo(formData).subscribe({
+    const payload = {
+  fullName: this.form.get('fullName')?.value,
+  title: this.form.get('title')?.value,
+  location: this.form.get('location')?.value,
+  availability: this.form.get('availability')?.value,
+  email: this.form.get('publicEmail')?.value,
+  shortBio: this.form.get('shortBio')?.value,
+  longBio: this.form.get('longBio')?.value,
+  githubURL: this.form.get('githubURL')?.value,
+  linkedInURL: this.form.get('linkedInURL')?.value,
+};
+
+this._aboutService.addInfo(payload).subscribe({
       next: (data)=>{
         this.status = 'Success';
       },

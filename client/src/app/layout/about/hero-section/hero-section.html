@@ -1,0 +1,63 @@
+<!-- ============================== HERO ============================== -->
+<section class="hero" id="about">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow">{{ aboutData?.title }}</p>
+      <h1 class="hero__name">{{ aboutData?.fullName }}</h1>
+      <!-- JS/backend: replace with fetched bio text -->
+      <p class="hero__bio" data-field="bio">
+        {{ aboutData?.shortBio }}
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/projects" class="btn btn--primary">View my projects</a>
+        <a routerLink="#contact" class="btn btn--ghost">Get in touch</a>
+      </div>
+      <ul class="hero__meta">
+        <li>
+          <span class="meta-label">Location</span>
+          <span data-field="location">{{ aboutData?.location }}</span>
+        </li>
+        <li>
+          <span class="meta-label">Email</span>
+          <span data-field="email"
+            ><a [href]="'mailto:' + aboutData?.email">{{ aboutData?.email }}</a></span
+          >
+        </li>
+        <li>
+          <span class="meta-label">Availability</span>
+          <span data-field="availability">{{ aboutData?.availability }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="hero__portrait">
+      <!-- JS/backend: replace src with uploaded portrait -->
+      <img
+        src="https://placehold.co/480x560/f1eee7/9a9484?text=Portrait"
+        alt="Portrait of Jane Doe"
+        data-field="portrait"
+      />
+    </div>
+  </div>
+
+  <!-- ============================== STORY ============================== -->
+  <section class="section" id="story">
+    <div class="container">
+      <p class="eyebrow">About me</p>
+      <h2>A bit more about how I work</h2>
+      <!-- JS/backend: replace with fetched long-form bio (rendered paragraphs) -->
+      <div class="prose" data-field="about-long">
+        <!-- <p>
+          I'm a software engineer with a background in building products end to end — from data
+          modelling and APIs through to the interfaces people actually use. I care about
+          performance, accessibility, and code that's easy for the next person to pick up.
+        </p>
+        <p>
+          Outside of client and product work, I spend time contributing to open-source tooling,
+          mentoring newer developers, and writing about what I learn along the way. I'm always happy
+          to talk through an idea, a bug, or a career question.
+        </p> -->
+        {{ aboutData?.longBio }}
+      </div>
+    </div>
+  </section>
+</section>
