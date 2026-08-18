@@ -10,12 +10,11 @@
           </p>
           <div class="contact__direct">
             <span class="meta-label">Email me directly</span>
-            <a href="mailto:hello@janedoe.dev" data-field="contact-email">hello@janedoe.dev</a>
+            <a [href]="aboutData?.email" data-field="contact-email">{{aboutData?.email}}</a>
           </div>
           <ul class="contact__social">
-            <li><a href="#" data-field="social-github">GitHub</a></li>
-            <li><a href="#" data-field="social-linkedin">LinkedIn</a></li>
-            <li><a href="#" data-field="social-twitter">Twitter</a></li>
+            <li><a [href]="aboutData?.githubURL" data-field="social-github">GitHub</a></li>
+            <li><a [href]="aboutData?.linkedinURL" data-field="social-linkedin">LinkedIn</a></li>
           </ul>
         </div>
 

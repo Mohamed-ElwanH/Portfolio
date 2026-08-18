@@ -106,9 +106,9 @@
         formControlName="linkedInURL"
         placeholder="https://linkedin.com/in/janedoe"
       />
-      <div class="msg" *ngIf="form.get('linkedinURL')?.touched && form.get('linkedInURL')?.invalid">
-        <p *ngIf="form.get('linkedinURL')?.errors?.['invalidUrl']">Invalid URL format</p>
-        <p *ngIf="form.get('linkedinURL')?.errors?.['required']">Linkedin is required</p>
+      <div class="msg" *ngIf="form.get('linkedInURL')?.touched && form.get('linkedInURL')?.invalid">
+        <p *ngIf="form.get('linkedInURL')?.errors?.['invalidUrl']">Invalid URL format</p>
+        <p *ngIf="form.get('linkedInURL')?.errors?.['required']">Linkedin is required</p>
       </div>
     </div>
   </div>

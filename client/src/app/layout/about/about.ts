@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HeroSection } from './hero-section/hero-section';
 import { ContactForm } from './contact-form/contact-form';
 import { IAboutAPI } from '../../core/models/about.model';
@@ -10,27 +10,23 @@ import { AboutService } from '../../core/services/about-service';
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
-export class About implements OnInit{
-
+export class About implements OnInit {
   aboutData: IAboutAPI | null = null;
-  error: string | null = null;
-  loading = true;
-  
-  constructor(private _aboutService:AboutService){}
+
+  constructor(
+    private _aboutService: AboutService,
+    private _cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     this._aboutService.getInfo().subscribe({
-      next: (data)=>{
+      next: (data) => {
         this.aboutData = data;
-        this.loading = false;
+        this._cdr.detectChanges();
       },
-      error: (e)=>{
-        this.error = "Failed to load about data";
-        this.loading = false;
+      error: (e) => {
         console.log(e);
-      }
-      
+      },
     });
   }
-
 }

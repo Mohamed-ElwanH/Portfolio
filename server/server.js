@@ -1,7 +1,12 @@
 const express = require('express');
 const connectDB = require('./config/db.js');
+const cors = require('cors');
 const app = express();
-const PORT = 3000;
+
+app.use(cors({
+  origin: 'http://localhost:4200'  //angular server
+}));
+
 
 connectDB();
 app.use(express.json());
@@ -20,4 +25,5 @@ app.use('/api/projects', projRoute);
 app.use('/api/messages', msgRoute);
 app.use('/api/skills', skillRoute);
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT,_=>console.log(`Server started at port: ${PORT}`));

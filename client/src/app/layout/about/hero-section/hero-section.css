@@ -129,3 +129,6 @@
   }
 
 }
+.prose {
+  white-space: pre-line;
+}

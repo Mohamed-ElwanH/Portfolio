@@ -2,28 +2,30 @@
 <section class="hero" id="about">
   <div class="container hero__grid">
     <div class="hero__content">
-      <p class="eyebrow">{{aboutData?.title}}</p>
-      <h1 class="hero__name">{{aboutData?.fullName}}</h1>
+      <p class="eyebrow">{{ aboutData?.title }}</p>
+      <h1 class="hero__name">{{ aboutData?.fullName }}</h1>
       <!-- JS/backend: replace with fetched bio text -->
       <p class="hero__bio" data-field="bio">
-        {{aboutData?.shortBio}}
+        {{ aboutData?.shortBio }}
       </p>
       <div class="hero__actions">
-        <a routerLink="/projects" class="btn btn--primary"></a>
-        <a rouiterLink="#contact" class="btn btn--ghost">Get in touch</a>
+        <a routerLink="/projects" class="btn btn--primary">View my projects</a>
+        <a routerLink="#contact" class="btn btn--ghost">Get in touch</a>
       </div>
       <ul class="hero__meta">
         <li>
           <span class="meta-label">Location</span>
-          <span data-field="location">{{aboutData?.location}}</span>
+          <span data-field="location">{{ aboutData?.location }}</span>
         </li>
         <li>
-          <span class="meta-label">{{aboutData?.email}}</span>
-          <span data-field="email"><a href="mailto:hello@janedoe.dev">hello@janedoe.dev</a></span>
+          <span class="meta-label">Email</span>
+          <span data-field="email"
+            ><a [href]="'mailto:' + aboutData?.email">{{ aboutData?.email }}</a></span
+          >
         </li>
         <li>
-          <span class="meta-label">{{aboutData?.availability}}</span>
-          <span data-field="availability">Open to opportunities</span>
+          <span class="meta-label">Availability</span>
+          <span data-field="availability">{{ aboutData?.availability }}</span>
         </li>
       </ul>
     </div>
@@ -36,8 +38,6 @@
       />
     </div>
   </div>
-
-
 
   <!-- ============================== STORY ============================== -->
   <section class="section" id="story">
@@ -56,9 +56,8 @@
           mentoring newer developers, and writing about what I learn along the way. I'm always happy
           to talk through an idea, a bug, or a career question.
         </p> -->
-        {{aboutData?.longBio}}
+        {{ aboutData?.longBio }}
       </div>
     </div>
   </section>
-
-  </section>
+</section>
