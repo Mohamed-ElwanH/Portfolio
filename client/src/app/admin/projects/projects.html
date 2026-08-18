@@ -1,1 +1,129 @@
-<p>projects works!</p>
+<form class="projects-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="projects-form__header">
+    <h2>Projects</h2>
+    <button type="button" class="btn btn--ghost btn--small" (click)="addEntry()">
+      + Add project
+    </button>
+  </div>
+
+  <div formArrayName="projects" class="entry-list">
+    <div class="entry" *ngFor="let project of projects.controls; let i = index" [formGroupName]="i">
+      <div class="entry__top">
+        <span class="entry__tag">Project #{{ i + 1 }}</span>
+        <button
+          type="button"
+          class="btn btn--danger btn--small"
+          (click)="removeEntry(i)"
+          [disabled]="projects.length === 1"
+        >
+          Remove
+        </button>
+      </div>
+
+      <div class="entry__fields">
+        <div class="form-group">
+          <label [for]="'proj-title-' + i">Title</label>
+          <input
+            type="text"
+            [id]="'proj-title-' + i"
+            formControlName="title"
+            placeholder="Project Name"
+          />
+          <div class="msg" *ngIf="project.get('title')?.touched && project.get('title')?.invalid">
+            <p *ngIf="project.get('title')?.errors?.['required']">Title is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'proj-meta-' + i">Meta</label>
+          <input
+            type="text"
+            [id]="'proj-meta-' + i"
+            formControlName="meta"
+            placeholder="Tech stack or category"
+          />
+          <div class="msg" *ngIf="project.get('meta')?.touched && project.get('meta')?.invalid">
+            <p *ngIf="project.get('meta')?.errors?.['required']">Meta is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'proj-tags-' + i">Tags</label>
+          <input
+            type="text"
+            [id]="'proj-tags-' + i"
+            formControlName="tags"
+            placeholder="React, Node.js, MongoDB"
+          />
+          <div class="msg" *ngIf="project.get('tags')?.touched && project.get('tags')?.invalid">
+            <p *ngIf="project.get('tags')?.errors?.['required']">Tags are required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'proj-img-' + i">Image URL</label>
+          <input
+            type="text"
+            [id]="'proj-img-' + i"
+            formControlName="img"
+            placeholder="https://example.com/image.jpg"
+          />
+          <div class="msg" *ngIf="project.get('img')?.touched && project.get('img')?.invalid">
+            <p *ngIf="project.get('img')?.errors?.['required']">Image URL is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'proj-live-' + i">Live Link</label>
+          <input
+            type="text"
+            [id]="'proj-live-' + i"
+            formControlName="liveLink"
+            placeholder="https://project-live.com"
+          />
+          <div class="msg" *ngIf="project.get('liveLink')?.touched && project.get('liveLink')?.invalid">
+            <p *ngIf="project.get('liveLink')?.errors?.['required']">Live link is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'proj-repo-' + i">Repository Link</label>
+          <input
+            type="text"
+            [id]="'proj-repo-' + i"
+            formControlName="repoLink"
+            placeholder="https://github.com/user/repo"
+          />
+          <div class="msg" *ngIf="project.get('repoLink')?.touched && project.get('repoLink')?.invalid">
+            <p *ngIf="project.get('repoLink')?.errors?.['required']">Repository link is required</p>
+          </div>
+        </div>
+
+        <div class="form-group form-group--full">
+          <label [for]="'proj-desc-' + i">Description</label>
+          <textarea
+            [id]="'proj-desc-' + i"
+            formControlName="desc"
+            rows="3"
+            placeholder="Project description..."
+          ></textarea>
+          <div class="msg" *ngIf="project.get('desc')?.touched && project.get('desc')?.invalid">
+            <p *ngIf="project.get('desc')?.errors?.['required']">Description is required</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="empty-state" *ngIf="projects.length === 0">
+      No projects yet. Click "Add project" to create one.
+    </p>
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn--ghost" (click)="form.reset()">Discard changes</button>
+    <button type="submit" class="btn btn--primary" [disabled]="form.invalid">Save changes</button>
+  </div>
+
+  <div *ngIf="status === 'Success'" class="success-msg">Changes saved successfully!</div>
+  <div *ngIf="status === 'Failed'" class="error-msg">Failed to save changes</div>
+</form>

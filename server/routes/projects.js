@@ -35,7 +35,19 @@ router.get("/", async (req, res) => {
     res.status(500).json({ err: e.message });
   }
 });
-
+router.put("/", async (req, res) => {
+  try {
+    const data = Array.isArray(req.body) ? req.body : [req.body];
+    
+    // Delete all old projects and create new ones
+    await Project.deleteMany({});
+    const projects = await Project.insertMany(data);
+    
+    res.status(200).json(projects);
+  } catch (e) {
+    res.status(500).json({ err: e.message });
+  }
+});
 router.put("/:id", async (req, res) => {
   const { title, meta, desc, tags, img, liveLink, repoLink } = req.body;
 
