@@ -4,7 +4,7 @@ const router = express.Router();
 
 const Education = educationSchema;
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res) => { //for single objects not arrays
   try {
     const { degree, school, date, desc } = req.body;
     const edu = await Education.create({ degree, school, date, desc });
@@ -33,5 +33,18 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async(req, res)=>{
     const edu = await Education.findByIdAndDelete(req.params.id);
     res.status(200).json(edu);
+});
+router.put("/", async (req, res) => {
+  try {
+    const data = Array.isArray(req.body) ? req.body : [req.body];
+    
+    // Replace all education entries
+    await Education.deleteMany({});
+    const edu = await Education.insertMany(data);
+    
+    res.status(200).json(edu);
+  } catch (e) {
+    res.status(500).json({ err: e.message });
+  }
 });
 module.exports = router;

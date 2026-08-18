@@ -1,1 +1,90 @@
-<p>education works!</p>
+<form class="education-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="education-form__header">
+    <h2>Education</h2>
+    <button type="button" class="btn btn--ghost btn--small" (click)="addEntry()">
+      + Add degree
+    </button>
+  </div>
+
+  <div formArrayName="degrees" class="entry-list">
+    <div class="entry" *ngFor="let degree of degrees.controls; let i = index" [formGroupName]="i">
+      <div class="entry__top">
+        <span class="entry__tag">Entry #{{ i + 1 }}</span>
+        <button
+          type="button"
+          class="btn btn--danger btn--small"
+          (click)="removeEntry(i)"
+          [disabled]="degrees.length === 1"
+        >
+          Remove
+        </button>
+      </div>
+
+      <div class="entry__fields">
+        <div class="form-group">
+          <label [for]="'ed-degree-' + i">Degree</label>
+          <input
+            type="text"
+            [id]="'ed-degree-' + i"
+            formControlName="degree"
+            placeholder="B.Sc. in Computer Science"
+          />
+          <div class="msg" *ngIf="degree.get('degree')?.touched && degree.get('degree')?.invalid">
+            <p *ngIf="degree.get('degree')?.errors?.['required']">Degree is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'ed-school-' + i">School</label>
+          <input
+            type="text"
+            [id]="'ed-school-' + i"
+            formControlName="school"
+            placeholder="University of Technology"
+          />
+          <div class="msg" *ngIf="degree.get('school')?.touched && degree.get('school')?.invalid">
+            <p *ngIf="degree.get('school')?.errors?.['required']">School is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label [for]="'ed-date-' + i">Dates</label>
+          <input
+            type="text"
+            [id]="'ed-date-' + i"
+            formControlName="date"
+            placeholder="2022 — 2026"
+          />
+          <div class="msg" *ngIf="degree.get('date')?.touched && degree.get('date')?.invalid">
+            <p *ngIf="degree.get('date')?.errors?.['required']">Date is required</p>
+          </div>
+        </div>
+
+        <div class="form-group form-group--full">
+          <label [for]="'ed-desc-' + i">Description</label>
+          <textarea
+            [id]="'ed-desc-' + i"
+            formControlName="desc"
+            rows="3"
+            placeholder="Focused on distributed systems and human-computer interaction..."
+          ></textarea>
+          <div class="msg" *ngIf="degree.get('desc')?.touched && degree.get('desc')?.invalid">
+            <p *ngIf="degree.get('desc')?.errors?.['required']">Description is required</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="empty-state" *ngIf="degrees.length === 0">
+      No education entries yet. Click "Add degree" to create one.
+    </p>
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn--ghost" (click)="form.reset()">Discard changes</button>
+    <button type="submit" class="btn btn--primary" [disabled]="form.invalid">Save changes</button>
+  </div>
+
+  <div *ngIf="status === 'Success'" class="success-msg">Changes saved successfully!</div>
+  <div *ngIf="status === 'Failed'" class="error-msg">Failed to save changes</div>
+</form>
