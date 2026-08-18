@@ -1,0 +1,21 @@
+<section class="container">
+  <div class="projects-grid" id="projects-grid">
+    <article class="project-card" *ngFor="let project of projectsData; let i = index" [attr.data-project-id]="i + 1">
+      <div class="project-card__media">
+        <img [src]="project.img" [alt]="'Screenshot of ' + project.title" />
+      </div>
+      <div class="project-card__body">
+        <p class="project-card__meta">{{ project.meta }}</p>
+        <h3 class="project-card__title">{{ project.title }}</h3>
+        <p class="project-card__desc">{{ project.desc }}</p>
+        <ul class="tag-list">
+          <li class="tag" *ngFor="let tag of project.tags.split(',')">{{ tag.trim() }}</li>
+        </ul>
+        <div class="project-card__links">
+          <a [href]="project.liveLink" class="link-arrow">Live site</a>
+          <a [href]="project.repoLink" class="link-arrow">Source code</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
